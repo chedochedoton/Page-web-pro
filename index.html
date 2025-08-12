@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHEDO</title>
+  <meta name="description"
+    content="Voyagez futé : comparez, réservez et partez en toute liberté avec CHEDO. Lien Trip.com + conseils personnalisés." />
+
+  <style>
+    :root {
+      --grad1: #ff7e5f;
+      --grad2: #feb47b;
+      --radius: 12px;
+      --shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.2);
+      --transition: 0.35s cubic-bezier(.4, .2, .2, 1);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #0f111a;
+      color: #f5f5f9;
+      line-height: 1.45;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1100px;
+      padding: 0 1rem;
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(15, 17, 26, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--grad1), var(--grad2));
+      color: #fff;
+      padding: .75rem 1.5rem;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: 0 20px 40px -10px rgba(255, 126, 95, 0.5);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-2px);
+    }
+
+    .small {
+      font-size: .85rem;
+      opacity: .85;
+    }
+
+    .hero {
+      padding: 3rem 0 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      flex: 1 1 400px;
+    }
+
+    .headline {
+      font-size: 2.5rem;
+      margin: 0 0 .5rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #fffa, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sub {
+      font-size: 1.1rem;
+      margin: 0 0 1rem;
+      display: block;
+    }
+
+    .cards {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 30px 70px -5px rgba(254, 180, 123, 0.25);
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--grad2), var(--grad1));
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: .6rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .features {
+      margin: 3rem 0;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .share-box {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1rem;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .cta-strip {
+      margin: 3rem 0;
+      background: linear-gradient(135deg, var(--grad1), var(--grad2));
+      padding: 2rem;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      color: #0f111a;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .cta-strip h2 {
+      margin: 0;
+      flex: 1 1 250px;
+      font-size: 1.75rem;
+    }
+
+    .cards-services {
+      margin: 2rem 0;
+    }
+
+    .testimonial {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1.5rem;
+      border-radius: 12px;
+      position: relative;
+      margin: 2rem 0;
+    }
+
+    .contact {
+      padding: 2rem 0;
+    }
+
+    .grid-2 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 1.5rem;
+      border-radius: 12px;
+      flex: 1 1 300px;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer {
+      padding: 2rem 0 1rem;
+      font-size: .8rem;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 3rem;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: .7rem;
+      display: inline-block;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    .qr-frame {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 12px;
+      border-radius: 14px;
+      display: inline-block;
+      max-width: 260px;
+      text-align: center;
+    }
+
+    .socials {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      flex: 1;
+      min-width: 120px;
+      font-size: .9rem;
+    }
+
+    .input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .small-cta {
+      display: inline-block;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      font-size: .75rem;
+      margin-top: 6px;
+    }
+
+    @media (max-width:1024px) {
+      .headline {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width:768px) {
+      .grid-2 {
+        flex-direction: column;
+      }
+    }
+     body {
+    background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e'); /* Exemple d’image attrayante */
+    background-size: cover;       /* L’image couvre tout l’écran */
+    background-repeat: no-repeat; /* Pas de répétition */
+    background-position: center;  /* Centrage de l’image */
+    min-height: 100vh;            /* Hauteur minimale de la page */
+    font-family: Arial, sans-serif;
+    color: #fff;                  /* Texte en blanc pour contraste */
+  }
+
+  /* Optionnel : rendre le fond plus lisible avec un filtre foncé */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* assombrit l’image */
+    z-index: -1;
+  }
+  </style>
+</head>
+
+<body>
+
+
+  <header class="container">
+    <div class="logo">
+      <div style="display:flex; align-items:center; gap:6px;">
+        <div style="font-size:1.6rem;">✈️</div>
+        <div>CHEDO Travel Deals</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+      <a href="#services" class="small" style="margin-right:12px;">Services</a>
+      <a href="#avantages" class="small" style="margin-right:12px;">Pourquoi choisir</a>
+      <a href="#contact" class="small" style="margin-right:12px;">Contact</a>
+      <a href="https://trip.tp.st/y1AkH2t5" target="_blank" class="btn-primary">Réserver maintenant</a>
+    </div>
+  </header>
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" aria-label="Présentation">
+      <div class="grid">
+        <div class="hero-text">
+          <h1 class="headline">Voyagez futé, comparez, réservez, partez en toute liberté.</h1>
+          <p class="sub">Avec <strong>CHEDO – Assistant Travel Deals</strong>, découvre les meilleures offres sur
+            Trip.com et profite d’un conseil personnalisé pour ton voyage, quel qu’il soit.</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="https://trip.tp.st/y1AkH2t5" target="_blank" class="btn-primary">Voir les offres</a>
+            <button onclick="shareWhatsApp()" class="btn-primary" style="background: #1ebe5d;">Partager</button>
+          </div>
+          <p class="small">Pas de frais cachés : tu compares les vrais offres du marché en temps réel et tu réserve au
+            prix publique officiel.</p>
+        </div>
+        <div style="flex:1 1 320px; position:relative;">
+          <div style="flex: 1 1 100%; max-width: 100%; margin-bottom: 30px;">
+            <div style="position: relative; width: 100%; height: 400px; overflow: hidden; border-radius: 20px;">
+              <img id="slideshow"
+                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80"
+                alt="Voyage"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px; opacity: 1; transition: opacity 1.2s ease-in-out;">
+            </div>
+          </div>
+
+          <script>
+            const images = [
+              "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80",
+              "https://plus.unsplash.com/premium_photo-1683140766566-3ecdcf5a02e0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTF8fHZveWFnZXxlbnwwfHwwfHx8MA%3D%3D",
+              "https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1400&q=80",
+              "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1400&q=80"
+            ];
+
+            let index = 0;
+            const slideshow = document.getElementById("slideshow");
+
+            setInterval(() => {
+              slideshow.style.opacity = 0;
+              setTimeout(() => {
+                index = (index + 1) % images.length;
+                slideshow.src = images[index];
+                slideshow.style.opacity = 1;
+              }, 1200); // correspond au temps de la transition
+            }, 5000); // Changement toutes les 5 secondes
+          </script>
+        </div>
+      </div>
+    </section>
+    <!-- Comment ça marche -->
+    <section id="services" class="features" aria-label="Comment ça marche">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:1rem;">
+          <div class="badge">Comment ça marche</div>
+          <h2 style="margin:0; font-size:2rem;">Simple en 3 étapes</h2>
+        </div>
+        <div class="feature-list">
+          <div class="card">
+            <div class="badge">1</div>
+            <h3>Compare les prix</h3>
+            <p>Tu cliques sur le lien Trip.com ci-dessus, tu explores les vols, hôtels et séjours adaptés à ton budget.
+            </p>
+          </div>
+          <div class="card">
+            <div class="badge">2</div>
+            <h3>Réserve malin</h3>
+            <p>Grâce à mon lien d’affilié, tu réserves en toute sécurité et tu profites des meilleures offres
+              disponibles.</p>
+          </div>
+          <div class="card">
+            <div class="badge">3</div>
+            <h3>Pars tranquille</h3>
+            <p>Je peux t’accompagner avec des conseils personnalisés : itinéraires, astuces locales, gestion de visas ou
+              voyages d’affaires.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Avantages -->
+    <section id="avantages">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:1rem;">
+          <div class="badge">Pourquoi choisir CHEDO</div>
+          <h2 style="margin:0; font-size:2rem;">Ta passerelle vers des voyages mieux organisés</h2>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <h3>Économies instantanées</h3>
+            <p>Tu compares plusieurs offres et choisis la meilleure sans perdre de temps.</p>
+          </div>
+          <div class="card">
+            <h3>Support humain</h3>
+            <p>Au-delà du lien, tu peux obtenir des conseils sur mesure (itinéraire, visa, astuces locales).</p>
+          </div>
+          <div class="card">
+            <h3>Transparence</h3>
+            <p>Pas de frais supplémentaires cachés : tu réserves via Trip.com et tu sais d’où vient ton aide.</p>
+          </div>
+          <div class="card">
+            <h3>Facile à partager</h3>
+            <p>Tu peux envoyer ton voyage proposé à un proche en un clic (WhatsApp, email, QR).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Call to Action strip -->
+    <section aria-label="Appel à l'action">
+      <div class="container">
+        <div class="cta-strip">
+          <div>
+            <h2>Commence ton prochain voyage maintenant</h2>
+            <p style="margin:4px 0;">Clique sur le bouton, compare et réserve : c’est rapide, malin et sans stress.</p>
+          </div>
+          <div style="margin-left:auto; display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="https://trip.tp.st/y1AkH2t5" target="_blank" class="btn-primary">Voir les offres</a>
+            <button onclick="copyLink()" class="btn-primary"
+              style="background: rgba(255,255,255,0.9); color:#0f111a;">Copier le lien</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- QR / flyer -->
+    <section aria-label="QR Code / flyer">
+      <div class="container" style="display:flex; flex-wrap:wrap; gap:2rem; align-items:center; margin-top:2rem;">
+        <div style="flex:1 1 320px;">
+          <div class="badge">Partage rapide</div>
+          <h2 style="margin-top:4px;">Scanne pour réserver</h2>
+          <p>Accède directement sur trip.com  sur ton smartphone en scannant ce QR code.
+          </p>
+          <div class="qr-frame">
+            <!-- Remplace src par ton image de QR code / flyer -->
+            <img src="https://i.ibb.co/QgsH2tm/82481e0f-a128-4538-a732-8df01e40c773.jpg" alt="QR Code à remplacer"
+              style="width:160px; display:block; margin:0 auto 8px; border-radius:8px;" />
+            <div style="font-size:.9rem;">Scanne pour réserver</div>
+            <div class="small-cta">Lien : <code
+                style="background:#111; padding:4px 6px; border-radius:6px; font-size:.65rem;">trip.tp.st/y1AkH2t5</code>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </section>
+    <!-- Témoignages / preuve sociale (placeholder) -->
+    <section aria-label="Témoignages">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:1rem;">
+          <div class="badge">Témoignages</div>
+          <h2 style="margin:0; font-size:2rem;">Ce qu'on dit de CHEDO</h2>
+        </div>
+        <div class="testimonial">
+          <p><em>“Grâce à CHEDO j’ai trouvé un vol abordable en seulement 5 minutes, et ses conseils pour le visa m’ont
+              sauvé la mise.”</em></p>
+          <p style="margin:0;"><strong>- Client satisfait</strong></p>
+        </div>
+        <div class="testimonial">
+          <p><em>“J’ai partagé le lien avec mes collègues ; ils ont tous réservé via Trip.com et m’ont remercié.”</em>
+          </p>
+          <p style="margin:0;"><strong>- Voyageur d’affaires</strong></p>
+        </div>
+      </div>
+    </section>
+    <!-- Contact / capture de lead -->
+    <section id="contact" class="contact" aria-label="Contact">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:1rem;">
+          <div class="badge">Reste en contact</div>
+          <h2 style="margin:0; font-size:2rem;">Tu veux un conseil personnalisé ?</h2>
+          <p>Envoie-moi un message rapide, je te réponds avec des suggestions adaptées à ton voyage.</p>
+        </div>
+        <div class="grid-2">
+          <!-- Formulaire email via mailto -->
+          <div class="contact-card">
+            <h3>Demande de conseil</h3>
+            <p>Tu peux me dire où tu veux aller, ton budget, et je te propose une idée de voyage.</p>
+            <form action="">
+              <label for="yourName">Ton nom</label>
+              <input id="yourName" class="input" placeholder="Ex: Amina" />
+              <label for="yourEmail">Ton email</label>
+              <input id="yourEmail" class="input" placeholder="exemple@domaine.com" />
+              <label for="yourMessage">Ton projet de voyage</label>
+              <textarea id="yourMessage" class="input" rows="4" placeholder="Destination, dates, budget..."></textarea>
+              <button onclick="sendEmail()" class="btn-primary" style="width:100%;">Envoyer une demande</button>
+            </form>
+            
+<!-- SCRIPT JS -->
+<script>
+  const form = document.getElementById("travelForm");
+  const status = document.getElementById("form-status");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value
+    };
+
+    try {
+      const response = await fetch("https://formspree.io/f/xxxxxxx", { // 🔁 remplace par ton vrai lien Formspree
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        status.textContent = "✅ Message envoyé avec succès !";
+        form.reset();
+      } else {
+        status.textContent = "❌ Une erreur s’est produite. Réessaie plus tard.";
+      }
+    } catch (error) {
+      status.textContent = "❌ Une erreur réseau s’est produite.";
+    }
+  });
+</script>
+            <p class="small">*Cela ouvre ton client mail avec un brouillon prêt à envoyer. Tu peux modifier avant envoi.
+            </p>
+          </div>
+          <!-- Partage rapide -->
+          <div class="contact-card">
+            <h3>Partage</h3>
+            <p>Fais connaître CHEDO à d'autres voyageurs facilement :</p>
+            <div class="share-box">
+              <div style="flex:1;">
+                <strong>Message prêt à copier :</strong>
+                <pre
+                  style="background:#111; padding:8px; border-radius:8px; font-size:.75rem; overflow-x:auto;">Découvre les deals de voyage sur Trip.com avec CHEDO : https://trip.tp.st/y1AkH2t5</pre>
+                <button onclick="copyText()" class="btn-primary small" style="margin-top:6px;">Copier</button>
+              </div>
+            </div>
+            <div style="margin-top:10px;">
+              <div class="small">Partage direct :</div>
+              <div class="socials">
+                <button onclick="shareWhatsApp()" class="btn-primary share-btn">WhatsApp</button>
+                <button onclick="shareTelegram()" class="btn-primary share-btn">Telegram</button>
+                <button onclick="shareFacebook()" class="btn-primary share-btn">Facebook</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div style="margin-bottom:8px;">© <strong>CHEDO – Assistant Travel Deals</strong> 2025. Tous droits réservés.
+      </div>
+      <div>Tu peux partager cette page, copier mon lien, ou me contacter directement pour un accompagnement.</div>
+      <div style="margin-top:4px;">
+        <span class="pill">Trip.com affiliate</span>
+        <span class="pill">Conseils personnalisés</span>
+        <span class="pill">Voyage futé</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Partage WhatsApp
+    function shareWhatsApp() {
+      const text = encodeURIComponent("Je recommande CHEDO pour tes voyages : https://trip.tp.st/y1AkH2t5 - Voyagez futé, comparez, réservez.");
+      const url = "https://api.whatsapp.com/send?text=" + text;
+      window.open(url, "_blank");
+    }
+    function shareTelegram() {
+      const text = encodeURIComponent("Je recommande CHEDO pour tes voyages : https://trip.tp.st/y1AkH2t5");
+      const url = "https://t.me/share/url?url=" + encodeURIComponent("https://trip.tp.st/y1AkH2t5") + "&text=" + text;
+      window.open(url, "_blank");
+    }
+    function shareFacebook() {
+      const url = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("https://trip.tp.st/y1AkH2t5");
+      window.open(url, "_blank");
+    }
+    function copyText() {
+      const msg = "Découvre les deals de voyage sur Trip.com avec CHEDO : https://trip.tp.st/y1AkH2t5";
+      navigator.clipboard.writeText(msg).then(() => {
+        alert("Message copié !");
+      });
+    }
+    function copyLink() {
+      navigator.clipboard.writeText("https://trip.tp.st/y1AkH2t5").then(() => {
+        alert("Lien copié !");
+      });
+    }
+    function sendEmail() {
+      const name = document.getElementById("yourName").value.trim();
+      const email = document.getElementById("yourEmail").value.trim();
+      const msg = document.getElementById("yourMessage").value.trim();
+      if (!email || !msg) {
+        alert("Merci de mettre au moins ton email et ton projet.");
+        return;
+      }
+      const subject = encodeURIComponent("Demande de conseil voyage - " + (name || "Nom non précisé"));
+      const body = encodeURIComponent("Nom: " + (name || "") + "\nEmail: " + email + "\nProjet:\n" + msg + "\n\nJe veux un accompagnement personnalisé.");
+      // Remplace ton.email@exemple.com par ton adresse réelle
+      const to = "chedracksekpon@gmail.com";
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    }
+  </script>
+
+
+</body>
+
+</html>
